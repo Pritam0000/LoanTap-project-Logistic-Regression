@@ -59,12 +59,16 @@ def preprocess_data(df, is_training=True):
     if is_training:
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
-        
+
         joblib.dump(scaler, 'models/scaler.pkl')
         joblib.dump(hashing_cols, 'models/hashing_cols.pkl')
         joblib.dump(X.shape[1], 'models/n_features.pkl')
 
-        y = df['loan_status'].values if 'loan_status' in df.columns else None
+        # Encode loan_status: 1 = Fully Paid (APPROVED), 0 = Charged Off (REJECTED)
+        if 'loan_status' in df.columns:
+            y = (df['loan_status'] == 'Fully Paid').astype(int).values
+        else:
+            y = None
         return X_scaled, y
     else:
         scaler = joblib.load('models/scaler.pkl')

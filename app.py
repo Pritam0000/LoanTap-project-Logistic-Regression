@@ -70,6 +70,7 @@ def show_model_training():
     if model_exists:
         st.success("✅ A trained model already exists!")
         st.info("You can use the existing model for predictions or retrain a new model below.")
+        st.warning("⚠️ If your predictions show inconsistent results (high probability but wrong decision), please retrain the model with the updated encoding.")
 
         # Show model info
         try:
@@ -352,7 +353,9 @@ def show_prediction():
                 input_df = pd.DataFrame([input_data])
                 input_processed = preprocess_data(input_df, is_training=False)
 
+                # Get prediction: 1 = Approved (Fully Paid), 0 = Rejected (Charged Off)
                 prediction = model.predict(input_processed)
+                # Get probability of approval (class 1)
                 probability = model.predict_proba(input_processed)[0][1]
 
                 # Display results
