@@ -21,14 +21,68 @@ This project implements a credit underwriting system for LoanTap, focusing on de
 
 The Streamlit app provides four main sections:
 
-1. Home: Welcome page
-2. Data Analysis: Displays basic statistics and visualizations of the dataset
-3. Model Training: Allows users to train and evaluate the model
-4. Prediction: Enables users to input loan application details and get predictions
+1. **Home**: Welcome page with project overview
+2. **Data Analysis**: Displays basic statistics and visualizations of the dataset
+   - Sample data preview
+   - Correlation heatmap
+   - Loan status distribution
+   - Loan amount distribution
+
+3. **Model Training**: Smart model management with existing model detection
+   - ✅ **Automatically detects if a trained model exists**
+   - Displays current model information and parameters
+   - Option to use existing model or retrain a new one
+   - Interactive test size selection
+   - Model evaluation with detailed metrics (Accuracy, Precision, Recall, F1-Score, ROC-AUC)
+
+4. **Prediction**: User-friendly loan approval prediction interface
+   - **Organized Input Tabs**:
+     - **📊 Loan Details Tab**:
+       - Loan amount (total money to be borrowed)
+       - Term (duration to repay the loan in months: 36 or 60)
+       - Interest rate (annual percentage charged on the loan)
+       - Installment (monthly payment amount)
+       - Purpose (reason for taking the loan)
+     - **👤 Borrower Information Tab**:
+       - Income (annual earnings of the borrower)
+       - DTI - Debt-to-Income ratio (percentage of monthly income used for debt payments)
+       - Home ownership (housing status: renting, owning, or have mortgage)
+       - Verification status (whether borrower's income has been verified by the lender)
+       - Credit accounts (number of open and total credit lines in borrower's credit history)
+   - **Smart sub-grade selection** based on selected grade
+   - **Required fields indicator** - expandable section showing all inputs needed
+   - **Visual prediction results** with approval probability and confidence levels
+   - **Interactive feedback** based on prediction confidence
+
+## Key Features & Improvements
+
+### 🔄 Smart Model Management
+- **No forced retraining**: The app detects if a trained model exists and allows you to use it
+- **Model information display**: View current model parameters and type
+- **Retrain option**: Easily retrain a new model if needed
+- All models are saved and can be reused across sessions
+
+### 📊 Enhanced User Interface
+- **Organized input sections**: Tabbed interface separating loan and borrower information
+- **Field descriptions**: Every input has a helpful tooltip explaining what it means
+- **Smart validation**: Appropriate input types and ranges for each field
+- **Visual feedback**: Color-coded results with confidence indicators
+
+### 🎯 Intelligent Predictions
+- **Clear results**: Shows approval/rejection with probability percentage
+- **Confidence levels**: Visual indicators (High/Moderate/Low confidence)
+- **Progress bar**: Visual representation of approval probability
+- **Expandable field list**: See all required inputs at a glance
 
 ## Model
 
 The project uses a Logistic Regression model for credit underwriting. The model is trained on historical loan data and predicts whether a loan application should be approved or rejected.
+
+**Model Performance**:
+- Uses RandomizedSearchCV for hyperparameter tuning
+- Optimized for ROC-AUC score
+- Includes feature hashing for categorical variables
+- Standard scaling for numeric features
 
 ## Data
 
