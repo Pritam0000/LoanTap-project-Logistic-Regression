@@ -36,8 +36,19 @@ The Streamlit app provides four main sections:
    - Model evaluation with detailed metrics (Accuracy, Precision, Recall, F1-Score, ROC-AUC)
 
 4. **Prediction**: User-friendly loan approval prediction interface
-   - **Organized input tabs**: Loan Details and Borrower Information
-   - **Clear field descriptions** with tooltips for each input
+   - **Organized Input Tabs**:
+     - **📊 Loan Details Tab**:
+       - Loan amount (total money to be borrowed)
+       - Term (duration to repay the loan in months: 36 or 60)
+       - Interest rate (annual percentage charged on the loan)
+       - Installment (monthly payment amount)
+       - Purpose (reason for taking the loan)
+     - **👤 Borrower Information Tab**:
+       - Income (annual earnings of the borrower)
+       - DTI - Debt-to-Income ratio (percentage of monthly income used for debt payments)
+       - Home ownership (housing status: renting, owning, or have mortgage)
+       - Verification status (whether borrower's income has been verified by the lender)
+       - Credit accounts (number of open and total credit lines in borrower's credit history)
    - **Smart sub-grade selection** based on selected grade
    - **Required fields indicator** - expandable section showing all inputs needed
    - **Visual prediction results** with approval probability and confidence levels
